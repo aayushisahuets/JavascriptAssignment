@@ -1,22 +1,15 @@
-// (function () {
-//   function tempFunc(){console.log("yeah?");};
+document.getElementById("submitForm").onsubmit = function(e) {
+	e.preventDefault()
+	enter_data()
+};
 
-// })();
-
-// document.getElementById("myTable").innerHTML = "<h3>No Records Found!!</h3>";
-function enter_data(e) {
-	e.preventDefault();
+function enter_data() {
 	var table = document.getElementById("showTable"); 		  
-		
-    if(table.rows.length <= 1)
-    {
-    	table.innerHTML = `<tr><th>Personnel</th><th>Action</th></tr>`;
-    }
+	
  	var row = table.insertRow(table.rows.length);//find the no of rows
  	var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
-    // console.log(table.insertRow(table.rows.length))
-    // if()
+  
 
     cell1.innerHTML =  document.getElementById("showText").value; 
     document.getElementById("showText").value= "";
@@ -33,7 +26,8 @@ function deleteFunction(row) {
 		table.deleteRow(rowIndex);
 
 		if(table.rows.length === 1) {
-			table.innerHTML = '<tr>No Personnels available</tr>';
+			let noFoundRow = table.insertRow(1);
+			noFoundRow.innerHTML='<tr><td colspan="2">No Personnels available</td></tr>'
 		}
 	} else {
 		return false;
